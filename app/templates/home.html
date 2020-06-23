@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+    <div class="todo_wrapper">
+        <ul>
+            {% for item in data %}
+                <li>{{ item["description"] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
