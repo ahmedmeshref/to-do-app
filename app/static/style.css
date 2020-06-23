@@ -1,0 +1,53 @@
+body {
+    font-family: 'H', 'Trebuchet MS', Helvetica;
+}
+
+ul {
+    list-style: none;
+}
+
+
+.todo_wrapper {
+    width: 50%;
+    margin: 100px auto 0;
+    background-color: #DADADA;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#description {
+    width: 400px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 20px;
+    font-size: 18px;
+    border: 1px solid;
+    color: darkblue;
+    border-radius: 15px;
+}
+
+
+#btn-new-task {
+    width: 200px;
+    padding: 20px 50px;
+    background-color: rgba(0,128,0, .5);
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 20px;
+    margin: 0 auto;
+}
+
+#btn-new-task:hover{
+    background-color: rgba(0,128,0, 1);
+}
+
+#tasks-list li {
+    text-align: left;
+    font-size: 20px;
+    margin-left:10px
+}
