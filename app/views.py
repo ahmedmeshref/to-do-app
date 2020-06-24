@@ -15,7 +15,7 @@ def create_todo():
     error = False
     try:
         description = request.get_json()['description']
-        if description == "":
+        if not description:
             return "Value is not valid"
         new_task = Todo(description=description)
         db.session.add(new_task)
