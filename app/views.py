@@ -15,6 +15,7 @@ def create_todo():
     body = {}
     error = False
     try:
+        l = int("12as")
         description = request.get_json()['description']
         if not validate_input(description):
             return "Value is not valid"
@@ -28,6 +29,9 @@ def create_todo():
         print(sys.exc_info())
     finally:
         db.session.close()
-    if not error:
+    if error:
+        return abort(500)
+    else:
         # jsonify transfers an object to a json string
         return jsonify(body)
+

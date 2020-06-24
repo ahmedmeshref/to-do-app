@@ -6,35 +6,12 @@ let app = {
     todo_list: document.getElementById("tasks-list")
 };
 
-let validInput = (element) => {
-    element.classList.remove("error");
-}
-
-let invalidInput = (element) => {
-    element.classList.add("error");
-}
-
-
-let validateInput = (element) => {
-    if (!element.value) {
-        invalidInput(element);
-        return false;
-    }
-    return true;
-}
-
-// handleErrors is a callback function throw an error message in case response error from backend
-function handleErrors(response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response.json();
-}
 
 // change the border of the input if onfocus in case it was errored
 app.description.addEventListener("focus", () => {
     validInput(app.description);
 })
+
 
 app.form.addEventListener("submit", (e) => {
     e.preventDefault();
