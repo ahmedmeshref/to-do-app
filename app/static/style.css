@@ -6,15 +6,35 @@ ul {
     list-style: none;
 }
 
+.container {
+    width: 98%;
+    margin: 100px auto 0;
+    display: flex;
+}
+
+.task-list-wrapper{
+
+}
 
 .todo_wrapper {
     width: 50%;
-    margin: 100px auto 0;
     background-color: #DADADA;
     border-radius: 10px;
     text-align: center;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title h1 {
+    color: #515A5A;
+    font-size: 34px;
+    border-bottom: 1px solid  #F1F4F7;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.add-item {
+    display: inline-block;
 }
 
 
@@ -25,12 +45,20 @@ ul {
     padding: 20px;
     font-size: 18px;
     border: 1px solid;
-    color: darkblue;
+    color: black;
     border-radius: 15px;
 }
 
+.error {
+    border: 2px solid #c51244;
+}
 
-#btn-new-task {
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#submit {
     width: 200px;
     padding: 20px 50px;
     background-color: rgba(0,128,0, .5);
@@ -42,11 +70,12 @@ ul {
     margin: 0 auto;
 }
 
-#btn-new-task:hover{
+#submit:hover{
     background-color: rgba(0,128,0, 1);
 }
 
 #tasks-list li {
+    color: #515A5A;
     text-align: left;
     font-size: 20px;
     margin-left:10px

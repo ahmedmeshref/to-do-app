@@ -8,27 +8,31 @@
     <script src="{{ url_for("static", filename="script.js") }}?{{time}}" defer></script>
 </head>
 <body>
-    <div class="task-list-wrapper"></div>
+    <div class="container">
+        <div class="task-list-wrapper"></div>
 
-    <div class="todo_wrapper">
-        <div class="header">
-            <div class="title">
-                <h1>to do</h1>
+        <div class="todo_wrapper">
+            <div class="header">
+                <div class="title">
+                    <h1>TO DO</h1>
+                </div>
+                <div class="new-todo">
+                    <form id="add-item-form" class="add-item">
+                        <input type="text" id="description" placeholder="Enter your task..." required>
+                        <button type="submit" id="submit">Add Task</button>
+                    </form>
+                </div>
             </div>
-            <div class="new-todo">
-                <input type="text" id="description" placeholder="Enter your task..." required>
-                <button type="submit" id="btn-new-task">Add Task</button>
+
+            <div class="search"></div>
+
+            <div class="tasks">
+                <ul id="tasks-list">
+                    {% for item in data %}
+                        <li>{{ item["description"] }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-
-        <div class="search"></div>
-
-        <div class="tasks">
-            <ul id="tasks-list">
-                {% for item in data %}
-                    <li>{{ item["description"] }}</li>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 </body>
