@@ -1,6 +1,5 @@
 from app import app, db
 from app.models import Todo
-from app.utils import validate_input
 from flask import render_template, request, jsonify, abort
 import sys
 
@@ -16,7 +15,7 @@ def create_todo():
     error = False
     try:
         description = request.get_json()['description']
-        if not validate_input(description):
+        if description == "":
             return "Value is not valid"
         new_task = Todo(description=description)
         db.session.add(new_task)
