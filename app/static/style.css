@@ -50,13 +50,14 @@ ul {
 }
 
 .error {
-    border: 2px solid #c51244;
+    border: 2px solid #D8000C !important;
+    box-shadow: 0 6px 10px 0 rgba(255,148,148, 0.6), 0 8px 22px 0 rgba(255,148,148, 0.19);
 }
 
-.shadow {
+#description:focus{
+    outline:none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 #submit {
     width: 200px;

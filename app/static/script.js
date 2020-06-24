@@ -7,10 +7,7 @@ let app = {
 };
 
 let validInput = (element) => {
-    if (element.classList.includes("error")){
-        element.classList.remove("error");
-    }
-    element.classList.add("shadow");
+    element.classList.remove("error");
 }
 
 let invalidInput = (element) => {
@@ -26,14 +23,21 @@ let validateInput = (element) => {
     return true;
 }
 
-// change the border of the input if onfocus
+// handleErrors is a callback function throw an error message in case response error from backend
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response.json();
+}
+
+// change the border of the input if onfocus in case it was errored
 app.description.addEventListener("focus", () => {
     validInput(app.description);
 })
 
-
-app.form.addEventListener("submit", () => {
-    event.preventDefault();
+app.form.addEventListener("submit", (e) => {
+    e.preventDefault();
     // validate input
     if (!validateInput(app.description)) return;
     fetch("/todos/create", {
@@ -45,15 +49,18 @@ app.form.addEventListener("submit", () => {
             'Content-type': 'application/json'
         }
     })
-        .then((response) => response.json())
-        .then((response_val) => {
-            console.log(`description: ${response_val.description}`);
-            // create a new todo list item
-            let LI = document.createElement('li');
-            LI.innerHTML = response_val.description;
-            app.todo_list.appendChild(LI);
-            app.description.value = "";
-        })
-        .catch((err) => console.log(err.message))
+    .then(handleErrors)
+    .then((response_val) => {
+        console.log(`description: ${response_val.description}`);
+        // create a new todo list item
+        let LI = document.createElement('li');
+        LI.innerHTML = response_val.description;
+        app.todo_list.appendChild(LI);
+        app.description.value = "";
+    })
+    .catch((err) => {
+        invalidInput(app.description);
+        console.log(err.message);
+    })
 })
 

@@ -2,6 +2,7 @@ from app import app, db
 from app.models import Todo
 from app.utils import validate_input
 from flask import render_template, request, jsonify, abort
+import sys
 
 
 @app.route('/')
@@ -11,19 +12,22 @@ def hello_world():
 
 @app.route("/todos/create", methods=["POST"])
 def create_todo():
-    description = request.get_json()['description']
+    body = {}
+    error = False
     try:
+        description = request.get_json()['description']
         if not validate_input(description):
             return "Value is not valid"
         new_task = Todo(description=description)
         db.session.add(new_task)
         db.session.commit()
-        return jsonify({
-            'description': new_task.description
-        })
+        body["description"] = new_task.description
     except Exception:
+        error = True
         db.session.rollback()
-        return abort(500)
+        print(sys.exc_info())
     finally:
         db.session.close()
-
+    if not error:
+        # jsonify transfers an object to a json string
+        return jsonify(body)
