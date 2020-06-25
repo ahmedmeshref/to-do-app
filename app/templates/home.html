@@ -27,11 +27,17 @@
             <div class="search"></div>
 
             <div class="tasks">
-                <ul id="tasks-list">
-                    {% for item in data %}
-                        <li>{{ item["description"] }}</li>
-                    {% endfor %}
-                </ul>
+                {% for item in data %}
+                    <div class="todo-list-wrapper" id="{{ item.id }}">
+                        <div class="completed">
+                            {{ item.completed }}
+                        </div>
+                        <div class="description">
+                            {{ item.description }}
+                        </div>
+                        <div class="delete"></div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
