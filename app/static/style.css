@@ -2,18 +2,11 @@ body {
     font-family: 'H', 'Trebuchet MS', Helvetica;
 }
 
-ul {
-    list-style: none;
-}
 
 .container {
     width: 98%;
     margin: 100px auto 0;
     display: flex;
-}
-
-.task-list-wrapper{
-
 }
 
 .todo_wrapper {
@@ -75,9 +68,38 @@ ul {
     background-color: rgba(0,128,0, 1);
 }
 
-#tasks-list li {
+#tasks-wrapper {
     color: #515A5A;
-    text-align: left;
     font-size: 20px;
-    margin-left:10px
+    margin: 20px 20px;
 }
+
+.items-wrapper {
+    display: flex;
+    border-bottom: 1px solid  #F1F4F7;
+    margin-bottom: 7px;
+    padding: 17px;
+}
+
+.items-wrapper:hover {
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.completed {
+    width: 8%;
+    text-align: left;
+}
+
+
+.tasks-checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.description {
+    width: 84%;
+    text-align: left;
+}
+
