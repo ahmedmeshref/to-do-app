@@ -32,9 +32,7 @@ app.form.addEventListener("submit", (e) => {
         console.log(`description: ${response_val.description}`);
         // create a new todo list item
         let LI = document.createElement('li');
-        LI.classList.add("task-item")
-
-
+        LI.classList.add("task-item");
         LI.innerHTML = `
         <div class="check-completed">
             <input class="checkbox" data-id='${response_val.id}' type="checkbox"/>

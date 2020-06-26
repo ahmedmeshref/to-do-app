@@ -109,3 +109,26 @@ li {
     width: 20px;
 }
 
+
+.delete-wrapper {
+    display: inline-block;
+    width: 8%;
+
+}
+
+#delete-task {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    padding: 4px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#delete-task:hover{
+    color: #d11a2a;
+    /*background-color: rgba(255, 204, 203, .7);*/
+    font-size: 30px;
+}
+
+#delete-task:focus {outline:0;}
+
