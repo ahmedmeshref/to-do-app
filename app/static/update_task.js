@@ -1,7 +1,7 @@
 import {request} from "./utils.js";
 
 let app = {
-    checkboxes: document.querySelectorAll(".checkbox")
+    checkboxes: document.querySelectorAll(".checkbox"),
 }
 
 
@@ -9,7 +9,7 @@ for (let i = 0; i < app.checkboxes.length; i++) {
     const checkbox = app.checkboxes[i];
     checkbox.onchange = (event) => {
         let isCompleted = event.target.checked,
-            task_id = event.target.dataset["id"],
+            task_id = checkbox.getAttribute('data-id'),
             route = "/todos/update_completed",
             method = "POST",
             msg = {

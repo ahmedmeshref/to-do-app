@@ -30,14 +30,14 @@
 
             <ul id="tasks-wrapper">
                 {% for task in tasks %}
-                    <li class="task-item">
+                    <li class="task-item" data-id="{{ task.id }}">
                         <div class="check-completed">
                             <input class="checkbox" data-id="{{ task.id }}" type="checkbox"
                                     {% if task.completed %} checked {% endif %} />
                         </div>
                         {{ task.description }}
                         <div class="delete-wrapper">
-                            <button id="delete-task">&cross;</button>
+                            <button id="delete-task" data-id={{ task.id }}">&cross;</button>
                         </div>
                     </li>
                 {% endfor %}
