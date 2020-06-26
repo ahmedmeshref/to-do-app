@@ -35,9 +35,11 @@
                             <input class="checkbox" data-id="{{ task.id }}" type="checkbox"
                                     {% if task.completed %} checked {% endif %} />
                         </div>
-                        {{ task.description }}
+                        <div class="task-description">
+                            {{ task.description }}
+                        </div>
                         <div class="delete-wrapper">
-                            <button id="delete-task" data-id={{ task.id }}">&cross;</button>
+                            <button type="button" class="delete-task" data-id="{{ task.id }}">&cross;</button>
                         </div>
                     </li>
                 {% endfor %}

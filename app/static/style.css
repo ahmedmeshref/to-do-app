@@ -82,7 +82,7 @@ li {
     border-bottom: 1px solid  #F1F4F7;
     margin-bottom: 7px;
     padding: 5px;
-    width: 84%;
+    width: 100%;
     text-align: left;
     line-height: 50px;
     word-wrap: break-word;
@@ -100,8 +100,8 @@ li {
     line-height: 56px;
     cursor: pointer;
     display: inline-block;
-    margin-right: 5px;
     height: 100%;
+    float: left;
 }
 
 .checkbox {
@@ -109,26 +109,32 @@ li {
     width: 20px;
 }
 
+.task-description {
+    display: inline-block;
+    width: 84%;
+}
 
 .delete-wrapper {
     display: inline-block;
     width: 8%;
-
+    float: right;
 }
 
-#delete-task {
-    background-color: rgba(255, 255, 255, 0);
+.delete-task {
+    -webkit-appearance: none;
+    background-color: Transparent;
     border: none;
     padding: 4px;
     font-size: 25px;
     cursor: pointer;
+    color: rgba(209, 26, 42, .8);
+    font-weight: bold;
 }
 
-#delete-task:hover{
-    color: #d11a2a;
-    /*background-color: rgba(255, 204, 203, .7);*/
+.delete-task:hover{
+    color: rgba(209, 26, 42, 1);
     font-size: 30px;
 }
 
-#delete-task:focus {outline:0;}
+.delete-task:focus {outline:0;}
 
