@@ -2,7 +2,9 @@ body {
     font-family: 'H', 'Trebuchet MS', Helvetica;
 }
 
-
+li {
+    list-style: none;
+}
 .container {
     width: 98%;
     margin: 100px auto 0;
@@ -10,7 +12,7 @@ body {
 }
 
 .todo_wrapper {
-    width: 50%;
+    width: 60%;
     background-color: #DADADA;
     border-radius: 10px;
     text-align: center;
@@ -68,45 +70,42 @@ body {
     background-color: rgba(0,128,0, 1);
 }
 
+
 #tasks-wrapper {
     color: #515A5A;
     font-size: 20px;
+    padding: 0;
     margin: 20px 20px;
-
 }
 
-.items-wrapper {
-    display: flex;
+.task-item {
     border-bottom: 1px solid  #F1F4F7;
     margin-bottom: 7px;
     padding: 5px;
-    height: 50px;
+    width: 84%;
+    text-align: left;
+    line-height: 50px;
+    word-wrap: break-word;
 }
 
-.items-wrapper:hover {
+
+.task-item:hover {
     background-color: rgba(255, 255, 255, .8);
     border-radius: 10px;
 }
 
-.checkbox-wrapper {
+.check-completed {
     width: 8%;
     text-align: center;
-    display: inline-block;
-    line-height: 55px;
+    line-height: 56px;
     cursor: pointer;
+    display: inline-block;
+    margin-right: 5px;
+    height: 100%;
 }
 
-
-.check-completed {
-    width: 20px;
+.checkbox {
     height: 20px;
-    cursor: pointer;
-}
-
-.description {
-    width: 84%;
-    text-align: left;
-    display: inline-block;
-    line-height: 50px;
+    width: 20px;
 }
 

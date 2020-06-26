@@ -6,8 +6,8 @@ import sys
 
 @app.route('/')
 def hello_world():
-    data = db.session.query(Todo).order_by(Todo.id).all()
-    return render_template('home.html', data=data)
+    tasks = db.session.query(Todo).order_by(Todo.id).all()
+    return render_template('home.html', tasks=tasks)
 
 
 @app.route("/todos/create", methods=["POST"])
@@ -22,6 +22,7 @@ def create_todo():
         db.session.add(new_task)
         db.session.commit()
         body["description"] = new_task.description
+        body["id"] = new_task.id
     except Exception:
         error = True
         db.session.rollback()

@@ -45,5 +45,3 @@ export let request = (route, method, msg) => {
     .then(logRequestResult)
     .catch(logError)
 }
-
-

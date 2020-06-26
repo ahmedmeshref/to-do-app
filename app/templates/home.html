@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}?{{time}}">
     <title>home</title>
-    <script type="module" defer src="{{ url_for("static", filename="script.js") }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for("static", filename="add_task.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="update_task.js") }}?{{time}}"></script>
 </head>
 <body>
@@ -27,20 +27,17 @@
 
             <div class="search"></div>
 
-            <div id="tasks-wrapper">
-                {% for item in data %}
-                    <div class="items-wrapper" id="">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" class="check-completed" value="{{ item.id }}"
-                                    {% if item.completed == True %} checked {% endif %}>
+            <ul id="tasks-wrapper">
+                {% for task in tasks %}
+                    <li class="task-item">
+                        <div class="check-completed">
+                            <input class="checkbox" data-id="{{ task.id }}" type="checkbox"
+                                    {% if task.completed %} checked {% endif %} />
                         </div>
-                        <div class="description">
-                            {{ item.description }}
-                        </div>
-                        <div class="delete"></div>
-                    </div>
+                        {{ task.description }}
+                    </li>
                 {% endfor %}
-            </div>
+             </ul>
         </div>
     </div>
 </body>
