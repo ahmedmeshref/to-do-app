@@ -6,7 +6,8 @@ import sys
 
 @app.route('/')
 def hello_world():
-    return render_template('home.html', data=db.session.query(Todo).all())
+    data = db.session.query(Todo).order_by(Todo.id).all()
+    return render_template('home.html', data=data)
 
 
 @app.route("/todos/create", methods=["POST"])
@@ -32,4 +33,29 @@ def create_todo():
     else:
         # jsonify transfers an object to a json string
         return jsonify(body)
+
+
+@app.route("/todos/update_completed", methods=["POST"])
+def update_completed():
+    error = False
+    body = {}
+    try:
+        id = request.get_json()['id']
+        state = request.get_json()['state']
+        # get the element from db
+        task = db.session.query(Todo).get(id)
+        task.completed = state
+        db.session.commit()
+        body["id"] = task.id
+        body["description"] = task.description
+        body["state"] = task.completed
+    except:
+        db.session.rollback()
+        error = True
+    finally:
+        db.session.close()
+    if not error:
+        return jsonify(body)
+    return abort(500)
+
 

@@ -25,4 +25,25 @@ export let handleErrors = (response) => {
     return response.json();
 }
 
+let logRequestResult = (responseVal) => {
+    console.log(responseVal);
+}
+
+let logError = (err) => {
+    console.log(err.message);
+}
+
+export let request = (route, method, msg) => {
+    fetch(route, {
+        method: method,
+        body: JSON.stringify(msg),
+         headers: {
+            'Content-type': 'application/json'
+        }
+    })
+    .then(handleErrors)
+    .then(logRequestResult)
+    .catch(logError)
+}
+
 

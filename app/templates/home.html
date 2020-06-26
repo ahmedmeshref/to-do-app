@@ -29,13 +29,10 @@
 
             <div id="tasks-wrapper">
                 {% for item in data %}
-                    <div class="items-wrapper" id="{{ item.id }}">
-                        <div class="completed">
-                            {% if item.completed == True %}
-                                <input type="checkbox" id="checkbox" class="tasks-checkbox" value="{{ item.id }}" checked>
-                            {% else %}
-                                <input type="checkbox" id="checkbox" class="tasks-checkbox" value="{{ item.id }}">
-                            {% endif %}
+                    <div class="items-wrapper" id="">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" class="check-completed" value="{{ item.id }}"
+                                    {% if item.completed == True %} checked {% endif %}>
                         </div>
                         <div class="description">
                             {{ item.description }}
