@@ -2,7 +2,7 @@ import {handleErrors} from "./utils.js";
 
 let app = {
     delete_btns: document.querySelectorAll(".delete-task"),
-    // task_item: document.querySelectorAll(".task-item")
+    task_item: document.querySelectorAll(".task-item")
 }
 
 // delete task from db
@@ -20,6 +20,8 @@ for (let i = 0; i < app.delete_btns.length; i++) {
         .then(handleErrors)
         .then((responseVal) => {
             console.log(responseVal);
+            const task_item = app.task_item[i];
+            task_item.parentNode.removeChild(task_item);
         })
         .catch((err) => {
             console.log(err);

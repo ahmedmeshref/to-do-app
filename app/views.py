@@ -36,15 +36,15 @@ def create_todo():
         return jsonify(body)
 
 
-@app.route("/todos/update_completed", methods=["POST"])
-def update_completed():
+@app.route("/todos/<task_id>/update_completed", methods=["POST"])
+def update_completed(task_id):
     error = False
     body = {}
     try:
-        id = request.get_json()['id']
+        task_id = task_id
         state = request.get_json()['state']
         # get the element from db
-        task = db.session.query(Todo).get(id)
+        task = db.session.query(Todo).get(task_id)
         task.completed = state
         db.session.commit()
         body["id"] = task.id
