@@ -60,3 +60,22 @@ def update_completed():
     return abort(500)
 
 
+@app.route("/todos/<task_id>/delete_task", methods=['POST'])
+def delete_task(task_id):
+    body = {}
+    error = False
+    try:
+        task = db.session.query(Todo).get(task_id)
+        db.session.delete(task)
+        db.session.commit()
+        body["id"] = task_id
+        body["description"] = task.description
+        body["state"] = task.completed
+    except:
+        db.session.rollback()
+        error = True
+    finally:
+        db.session.close()
+    if not error:
+        return jsonify(body)
+    return abort(500)

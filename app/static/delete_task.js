@@ -9,8 +9,9 @@ let app = {
 for (let i = 0; i < app.delete_btns.length; i++) {
     const btn = app.delete_btns[i];
     btn.onclick = () => {
-        let btn_id = app.btn.getAttribute("data-id");
-        fetch("/todos/" + btn_id + "/delete_task", {
+        let btn_id = btn.getAttribute("data-id");
+        fetch(`/todos/${btn_id}/delete_task`, {
+            method: 'POST',
             body: "delete-item",
             headers: {
                 'Content-type': 'application/json'
