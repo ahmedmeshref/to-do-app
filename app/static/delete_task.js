@@ -19,7 +19,8 @@ for (let i = 0; i < app.delete_btns.length; i++) {
         .then(handleErrors)
         .then((responseVal) => {
             console.log(responseVal);
-            const task_item = document.querySelector(`li[data-id='${btn_id}']`);
+            const all_tasks = document.querySelector("#tasks-wrapper"),
+                task_item = all_tasks.querySelector(`li[data-id='${btn_id}']`);
             task_item.parentNode.removeChild(task_item);
         })
         .catch((err) => {
