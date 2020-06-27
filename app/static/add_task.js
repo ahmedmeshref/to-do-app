@@ -34,10 +34,15 @@ app.form.addEventListener("submit", (e) => {
         let LI = document.createElement('li');
         LI.classList.add("task-item");
         LI.innerHTML = `
-        <div class="check-completed">
-            <input class="checkbox" data-id='${response_val.id}' type="checkbox"/>
-        </div>
-        ${response_val.description}
+            <div class="check-completed">
+                <input class="checkbox" data-id='${response_val.id}' type="checkbox"/>
+            </div>
+            <div class="task-description">
+                ${response_val.description}
+            </div>
+            <div class="delete-wrapper">
+                <button type="button" class="delete-task" data-id='${response_val.id}'>&cross;</button>
+            </div>
         `;
         app.todo_list.appendChild(LI);
         app.description.value = "";
