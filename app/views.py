@@ -29,11 +29,11 @@ def create_todo():
         print(sys.exc_info())
     finally:
         db.session.close()
-    if error:
-        abort(500)
-    else:
-        # jsonify transfers an object to a json string
+    if not error:
         return jsonify(body)
+    return abort(500)
+
+
 
 
 @app.route("/todos/<task_id>/update_completed", methods=["POST"])

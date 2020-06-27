@@ -29,7 +29,7 @@ app.form.addEventListener("submit", (e) => {
     })
     .then(handleErrors)
     .then((response_val) => {
-        console.log(`description: ${response_val.description}`);
+        console.log(response_val);
         // create a new todo list item
         let LI = document.createElement('li');
         LI.classList.add("task-item");
