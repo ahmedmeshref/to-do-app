@@ -5,6 +5,7 @@ body {
 li {
     list-style: none;
 }
+
 .container {
     width: 98%;
     margin: 100px auto 0;
@@ -23,7 +24,7 @@ li {
 .title h1 {
     color: #515A5A;
     font-size: 34px;
-    border-bottom: 1px solid  #F1F4F7;
+    border-bottom: 1px solid #F1F4F7;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -46,18 +47,18 @@ li {
 
 .error {
     border: 2px solid #D8000C !important;
-    box-shadow: 0 6px 10px 0 rgba(255,148,148, 0.6), 0 8px 22px 0 rgba(255,148,148, 0.19);
+    box-shadow: 0 6px 10px 0 rgba(255, 148, 148, 0.6), 0 8px 22px 0 rgba(255, 148, 148, 0.19);
 }
 
-#description:focus{
-    outline:none;
+#description:focus {
+    outline: none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #submit {
     width: 200px;
     padding: 20px 50px;
-    background-color: rgba(0,128,0, .5);
+    background-color: rgba(0, 128, 0, .5);
     cursor: pointer;
     border: 1px solid black;
     border-radius: 15px;
@@ -66,8 +67,8 @@ li {
     margin: 0 auto;
 }
 
-#submit:hover{
-    background-color: rgba(0,128,0, 1);
+#submit:hover {
+    background-color: rgba(0, 128, 0, 1);
 }
 
 
@@ -79,13 +80,13 @@ li {
 }
 
 .task-item {
-    border-bottom: 1px solid  #F1F4F7;
+    border-bottom: 1px solid #F1F4F7;
     margin-bottom: 7px;
     padding: 5px;
     width: 100%;
-    text-align: left;
     line-height: 50px;
     word-wrap: break-word;
+    border-radius: 20px;
 }
 
 
@@ -96,7 +97,6 @@ li {
 
 .check-completed {
     width: 8%;
-    text-align: center;
     line-height: 56px;
     cursor: pointer;
     display: inline-block;
@@ -111,7 +111,8 @@ li {
 
 .task-description {
     display: inline-block;
-    width: 84%;
+    width: 82%;
+    text-align: justify
 }
 
 .delete-wrapper {
@@ -131,10 +132,12 @@ li {
     font-weight: bold;
 }
 
-.delete-task:hover{
+.delete-task:hover {
     color: rgba(209, 26, 42, 1);
     font-size: 30px;
 }
 
-.delete-task:focus {outline:0;}
+.delete-task:focus {
+    outline: 0;
+}
 

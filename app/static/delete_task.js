@@ -2,7 +2,7 @@ import {handleErrors} from "./utils.js";
 
 let app = {
     delete_btns: document.querySelectorAll(".delete-task"),
-    task_item: document.querySelectorAll(".task-item")
+    // task_item: document.querySelectorAll(".task-item")
 }
 
 // delete task from db
