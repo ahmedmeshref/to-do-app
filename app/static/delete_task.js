@@ -7,10 +7,7 @@ let app = {
 let delete_item = (btn) => {
     const btn_id = btn.getAttribute("data-id"),
         route = `/todos/${btn_id}/delete_task`,
-        method = "POST",
-        msg = {
-            "id": btn_id,
-        },
+        method = "DELETE",
         handleRequestOutput = (responseVal) => {
             console.log(responseVal);
             // delete li item from dom
@@ -18,7 +15,7 @@ let delete_item = (btn) => {
                 task_item = all_tasks.querySelector(`li[data-id='${btn_id}']`);
             task_item.parentNode.removeChild(task_item);
         };
-    request(route, method, msg, handleErrors, handleRequestOutput,  logError);
+    request(route, method, {}, handleErrors, handleRequestOutput,  logError);
 }
 
 

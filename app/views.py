@@ -58,7 +58,7 @@ def update_completed(task_id):
     return abort(500)
 
 
-@app.route("/todos/<task_id>/delete_task", methods=['POST'])
+@app.route("/todos/<task_id>/delete_task", methods=['DELETE'])
 def delete_task(task_id):
     body = {}
     error = False
