@@ -1,4 +1,4 @@
-import {request} from "./utils.js";
+import {handleErrors, logRequestResult, logError, request} from "./utils.js";
 
 let app = {
     checkboxes: document.querySelectorAll(".checkbox"),
@@ -16,6 +16,6 @@ for (let i = 0; i < app.checkboxes.length; i++) {
                 "id": task_id,
                 'state': isCompleted
             }
-        request(route, method, msg);
+        request(route, method, msg, handleErrors, logRequestResult,  logError);
     }
 }

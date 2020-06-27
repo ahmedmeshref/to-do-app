@@ -25,15 +25,15 @@ export let handleErrors = (response) => {
     return response.json();
 }
 
-let logRequestResult = (responseVal) => {
+export let logRequestResult = (responseVal) => {
     console.log(responseVal);
 }
 
-let logError = (err) => {
+export let logError = (err) => {
     console.log(err.message);
 }
 
-export let request = (route, method, msg) => {
+export let request = (route, method, msg, handleErrors, logRequestResult,  logError) => {
     fetch(route, {
         method: method,
         body: JSON.stringify(msg),
