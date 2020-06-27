@@ -34,8 +34,6 @@ def create_todo():
     return abort(500)
 
 
-
-
 @app.route("/todos/<task_id>/update_completed", methods=["POST"])
 def update_completed(task_id):
     error = False
@@ -68,7 +66,7 @@ def delete_task(task_id):
         task = db.session.query(Todo).get(task_id)
         db.session.delete(task)
         db.session.commit()
-        body["id"] = task_id
+        body["id"] = task.id
         body["description"] = task.description
         body["state"] = task.completed
     except:
