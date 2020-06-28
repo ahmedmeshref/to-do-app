@@ -8,6 +8,8 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('POSTGRESQL') + "todoapp"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['DEBUG'] = True
+# allow me to see sql query that sqlalchemy runs in the background
+app.config['SQLALCHEMY_ECHO'] = True
 app.config["SECRET_KEY"] = os.environ.get('SECRETKEY')
 
 db = SQLAlchemy(app)
