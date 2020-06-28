@@ -7,10 +7,23 @@ li {
 }
 
 .container {
-    width: 98%;
+    width: 85%;
     margin: 100px auto 0;
     display: flex;
 }
+
+.list-section {
+    width: 30%;
+    border: 1px solid black;
+}
+
+.header h3 {
+    text-align: left;
+    color: #515A5A;
+    font-size: 30px;
+}
+
+
 
 .todo_wrapper {
     width: 60%;
