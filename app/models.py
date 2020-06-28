@@ -7,7 +7,7 @@ class List(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     # set relationship with
-    tasks = db.relationship('Todo', backref="list", lazy='select', cascade='save-updates, merge, delete-orphan')
+    tasks = db.relationship('Todo', backref="list", lazy='select', cascade='save-update, merge, delete-orphan')
 
     def __repr__(self):
         return f"<List ${self.id} ${self.name}>"
