@@ -17,7 +17,10 @@
                 <h3>Lists</h3>
             </div>
             <div class="new_list">
-{#                add form#}
+                <form id="add-list" class="add-item">
+                    <input type="text" id="description" placeholder="List Name..." required>
+                    <button type="submit" id="submit">Create</button>
+                </form>
             </div>
             <div>
                 <ul class="lists-wrapper">
@@ -41,7 +44,7 @@
                     <h1>TO DO</h1>
                 </div>
                 <div class="new-todo">
-                    <form id="add-item-form" class="add-item">
+                    <form id="add-task" class="add-item">
                         <input type="text" id="description" placeholder="Enter your task..." required>
                         <button type="submit" id="submit">Add Task</button>
                     </form>

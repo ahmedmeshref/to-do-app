@@ -2,7 +2,7 @@
 import {validInput, invalidInput, validateInput, handleErrors} from "./utils.js";
 
 let app = {
-    form: document.getElementById("add-item-form"),
+    form: document.getElementById("add-task"),
     description: document.getElementById("description"),
     todo_list: document.getElementById("tasks-wrapper")
 };
