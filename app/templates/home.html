@@ -21,7 +21,16 @@
             </div>
             <div>
                 <ul class="lists-wrapper">
-                    <li></li>
+                    {% for list in lists %}
+                        <li class="list-item">
+                            <div class="list-name">
+                                {{ list.name }}
+                            </div>
+                            <div class="delete-wrapper">
+                                <button type="button" class="delete-task" data-id="{{ list.id }}">&cross;</button>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

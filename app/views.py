@@ -1,13 +1,14 @@
 from app import app, db
-from app.models import Todo
+from app.models import Todo, List
 from flask import render_template, request, jsonify, abort
 import sys
 
 
 @app.route('/')
-def hello_world():
+def home():
     tasks = db.session.query(Todo).order_by(Todo.id).all()
-    return render_template('home.html', tasks=tasks)
+    lists = db.session.query(List).order_by(List.id).all()
+    return render_template('home.html', tasks=tasks, lists=lists)
 
 
 @app.route("/todos/create", methods=["POST"])
