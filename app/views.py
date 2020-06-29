@@ -99,3 +99,22 @@ def create_list():
     if not error:
         return jsonify(body)
     return abort(500)
+
+
+@app.route("/todos/<list_id>/delete_list", methods=['DELETE'])
+def delete_list(list_id):
+    body = {}
+    error = False
+    try:
+        list_item = db.session.query(List).get(list_id)
+        db.session.delete(list_item)
+        db.session.commit()
+        body["id"] = list_item.id
+        body["name"] = list_item.name
+    except:
+        db.session.rollback()
+    finally:
+        db.session.close()
+    if not error:
+        return body
+    return abort(404)

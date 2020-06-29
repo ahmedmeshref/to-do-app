@@ -6,7 +6,7 @@ let app = {
 }
 
 let delete_item = (btn, address, wrapper) => {
-    const btn_id = btn.getAttribute("data-id"),
+    let btn_id = btn.getAttribute("data-id"),
         route = `/todos/${btn_id}/${address}`,
         method = "DELETE",
         handleRequestOutput = (responseVal) => {
