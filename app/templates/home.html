@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}?{{time}}">
 {#    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">#}
     <title>home</title>
-    <script type="module" defer src="{{ url_for("static", filename="add_task.js") }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for("static", filename="add_item.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="update_task.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="delete_task.js") }}?{{time}}"></script>
 </head>
@@ -18,19 +18,19 @@
             </div>
             <div class="new_list">
                 <form id="add-list" class="add-item">
-                    <input type="text" id="description" placeholder="List Name..." required>
+                    <input type="text" id="list_name" placeholder="List Name..." required>
                     <button type="submit" id="submit">Create</button>
                 </form>
             </div>
             <div>
-                <ul class="lists-wrapper">
-                    {% for list in lists %}
+                <ul id="lists-wrapper">
+                    {% for list_item in lists %}
                         <li class="list-item">
                             <div class="list-name">
-                                {{ list.name }}
+                                {{ list_item.name }}
                             </div>
                             <div class="delete-wrapper">
-                                <button type="button" class="delete-task" data-id="{{ list.id }}">&cross;</button>
+                                <button type="button" class="delete-task" data-id="{{ list_item.id }}">&cross;</button>
                             </div>
                         </li>
                     {% endfor %}

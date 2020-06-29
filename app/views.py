@@ -78,3 +78,24 @@ def delete_task(task_id):
     if not error:
         return jsonify(body)
     return abort(500)
+
+
+@app.route("/todos/create_list", methods=["POST"])
+def create_list():
+    error = False
+    body = {}
+    try:
+        list_name = request.get_json()['list_name']
+        list_item = List(name=list_name)
+        db.session.add(list_item)
+        db.session.commit()
+        body['id'] = list_item.id
+        body['name'] = list_item.name
+    except:
+        db.session.rollback()
+        error = True
+    finally:
+        db.session.close()
+    if not error:
+        return jsonify(body)
+    return abort(500)

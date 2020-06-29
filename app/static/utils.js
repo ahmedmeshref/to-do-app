@@ -9,7 +9,7 @@ export let invalidInput = (element) => {
 }
 
 // validateInput takes in an input field item and validates its value
-export let validateInput = (element) => {
+export let isValidateInput = (element) => {
     if (!element.value) {
         invalidInput(element);
         return false;
