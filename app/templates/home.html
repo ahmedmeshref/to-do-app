@@ -25,12 +25,12 @@
             <div>
                 <ul id="lists-wrapper">
                     {% for list_item in lists %}
-                        <li class="list-item">
+                        <li class="list-item" data-id="{{ list_item.id }}">
                             <div class="list-name">
                                 {{ list_item.name }}
                             </div>
                             <div class="delete-wrapper">
-                                <button type="button" class="delete-task" data-id="{{ list_item.id }}">
+                                <button type="button" class="delete-item delete-list" data-id="{{ list_item.id }}">
                                     <span class="fa  fa-trash"></span>
                                 </button>
                             </div>
@@ -66,7 +66,7 @@
                             {{ task.description }}
                         </div>
                         <div class="delete-wrapper">
-                            <button type="button" class="delete-task" data-id="{{ task.id }}">
+                            <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
                                 <span class="fa  fa-trash-o"></span>
                             </button>
                         </div>

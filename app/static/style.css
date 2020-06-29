@@ -161,7 +161,7 @@ li {
     float: right;
 }
 
-.delete-task {
+.delete-item {
     -webkit-appearance: none;
     background-color: Transparent;
     border: none;
@@ -172,12 +172,12 @@ li {
     font-weight: bold;
 }
 
-.delete-task:hover {
+.delete-item:hover {
     color: rgba(209, 26, 42, 1);
     font-size: 30px;
 }
 
-.delete-task:focus {
+.delete-item:focus {
     outline: 0;
 }
 
