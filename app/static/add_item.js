@@ -27,12 +27,17 @@ app.task_form.addEventListener("submit", (e) => {
     if (!isValidateInput(app.description)) return;
     const route = "/todos/create",
         method = "POST",
-        msg = {'description': app.description.value},
+        list_id = app.description.getAttribute("data-list"),
+        msg = {
+            'description': app.description.value,
+            'list_id': list_id
+        },
         logRequestResult = (response_val) => {
             console.log(response_val);
             // create a new todo list item
             let LI = document.createElement('li');
             LI.classList.add("task-item");
+            LI.setAttribute('data-id' , response_val.id);
             LI.innerHTML = `
             <div class="check-completed">
                 <input class="checkbox" data-id='${response_val.id}' type="checkbox"/>
@@ -41,7 +46,7 @@ app.task_form.addEventListener("submit", (e) => {
                 ${response_val.description}
             </div>
             <div class="delete-wrapper">
-                <button type="button" class="delete-task" data-id='${response_val.id}'>
+                <button type="button" class="delete-item delete-task" data-id='${response_val.id}'>
                     <span class="fa  fa-trash-o"></span>
                 </button>
             </div>

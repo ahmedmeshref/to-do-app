@@ -26,14 +26,17 @@ def create_todo():
     body = {}
     error = False
     try:
-        description = request.get_json()['description']
+        json_input = request.get_json()
+        description = json_input['description']
+        list_id = json_input['list_id']
         if not description:
             return "Value is not valid"
-        new_task = Todo(description=description)
+        new_task = Todo(description=description, list_id=list_id)
         db.session.add(new_task)
         db.session.commit()
         body["description"] = new_task.description
         body["id"] = new_task.id
+        body["list_id"] = new_task.list_id
     except Exception:
         error = True
         db.session.rollback()
