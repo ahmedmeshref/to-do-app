@@ -37,10 +37,17 @@ li {
     line-height: 50px;
     word-wrap: break-word;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .list-item:hover {
-    background-color: rgba(241,244,247, .7);
+    background-color: rgba(218, 218, 218, 1);
+}
+
+.selected-list {
+    background-color: rgba(218, 218, 218, 1);
+    font-weight: bold;
+    color: rgb(19, 20, 0);
 }
 
 .list-name {

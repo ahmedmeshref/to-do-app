@@ -71,7 +71,9 @@ app.list_form.addEventListener("submit", (e) => {
                 ${response_val.name}
             </div>
             <div class="delete-wrapper">
-                <button type="button" class="delete-task" data-id="${response_val.id}">&cross;</button>
+                <button type="button" class="delete-item delete-list" data-id="${response_val.id}">
+                    <span class="fa  fa-trash"></span>
+                </button>
             </div>
             `;
             app.list_wrapper.appendChild(LI);

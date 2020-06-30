@@ -6,9 +6,13 @@ import sys
 
 @app.route('/')
 def home():
-    tasks = db.session.query(Todo).order_by(Todo.id).all()
     lists = db.session.query(List).order_by(List.id).all()
-    return render_template('home.html', tasks=tasks, lists=lists)
+    # if selected_list_id:
+    #     selected_list = db.session.query(List).get(selected_list_id)
+    # else:
+    selected_list = lists[0]
+    tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
+    return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
 
 
 @app.route("/todos/create", methods=["POST"])

@@ -9,6 +9,7 @@
     <script type="module" defer src="{{ url_for("static", filename="add_item.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="update_task.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="delete_item.js") }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for("static", filename="select_list.js") }}?{{time}}"></script>
 </head>
 <body>
     <div class="container">
@@ -18,14 +19,15 @@
             </div>
             <div class="new_list">
                 <form id="add-list" class="add-item">
-                    <input type="text" id="description" class="input-field" placeholder="List Name..." required>
+                    <input type="text" id="list_name" class="input-field" placeholder="List Name..." required>
                     <button type="submit" id="submit">Create</button>
                 </form>
             </div>
             <div>
                 <ul id="lists-wrapper">
                     {% for list_item in lists %}
-                        <li class="list-item" data-id="{{ list_item.id }}">
+                        <li class="list-item {% if selected_list == list_item %}selected-list{% endif %}"
+                            data-id="{{ list_item.id }}">
                             <div class="list-name">
                                 {{ list_item.name }}
                             </div>
@@ -43,7 +45,7 @@
         <div class="todo_wrapper">
             <div class="header">
                 <div class="title">
-                    <h1>TO DO</h1>
+                    <h1>{{ selected_list.name }}</h1>
                 </div>
                 <div class="new-todo">
                     <form id="add-task" class="add-item">
