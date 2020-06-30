@@ -1,18 +1,24 @@
 from app import app, db
 from app.models import Todo, List
-from flask import render_template, request, jsonify, abort
+from flask import render_template, request, jsonify, abort, redirect, url_for
 import sys
 
 
-@app.route('/')
+@app.route("/")
 def home():
+    first_list = db.session.query(List).first()
+    return redirect(url_for("show_list", list_id=first_list.id))
+
+
+@app.route('/l/<list_id>/')
+def show_list(list_id):
+    # try:
     lists = db.session.query(List).order_by(List.id).all()
-    # if selected_list_id:
-    #     selected_list = db.session.query(List).get(selected_list_id)
-    # else:
-    selected_list = lists[0]
+    selected_list = db.session.query(List).get(list_id)
     tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
     return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
+    # except:
+    #     return abort(500)
 
 
 @app.route("/todos/create", methods=["POST"])

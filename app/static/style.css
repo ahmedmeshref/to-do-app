@@ -6,6 +6,10 @@ li {
     list-style: none;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .container {
     width: 85%;
     margin: 100px auto 0;
@@ -37,17 +41,14 @@ li {
     line-height: 50px;
     word-wrap: break-word;
     border-radius: 10px;
-    cursor: pointer;
 }
 
 .list-item:hover {
-    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(218, 218, 218, .8);
 }
 
 .selected-list {
     background-color: rgba(218, 218, 218, 1);
-    font-weight: bold;
-    color: rgb(19, 20, 0);
 }
 
 .list-name {
@@ -55,8 +56,27 @@ li {
     font-size: 20px;
     margin-left: 10px;
     text-align: justify;
+    width: 80%;
+    color: #515A5A;
 }
 
+.selected-name {
+    color: rgb(19, 59, 0);
+    font-weight: bolder;
+}
+
+.list-name:hover {
+    color: rgba(0, 128, 0, .7)
+}
+
+.delete-list-wrapper {
+    display: inline-block;
+    width: 10%;
+}
+
+.delete-list-wrapper:hover {
+    color: rgba(209, 26, 42, 1);
+}
 
 .todo_wrapper {
     width: 60%;
@@ -73,6 +93,7 @@ li {
     border-bottom: 1px solid #F1F4F7;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    border-radius: 12px;
 }
 
 .add-item {
@@ -102,7 +123,7 @@ li {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#submit {
+.submit {
     width: auto;
     padding: 20px 50px;
     background-color: rgba(0, 128, 0, .5);
@@ -172,11 +193,11 @@ li {
     -webkit-appearance: none;
     background-color: Transparent;
     border: none;
-    padding: 4px;
     font-size: 25px;
     cursor: pointer;
     color: rgba(209, 26, 42, .7);
     font-weight: bold;
+    width: 100%;
 }
 
 .delete-item:hover {

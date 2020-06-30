@@ -9,7 +9,6 @@
     <script type="module" defer src="{{ url_for("static", filename="add_item.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="update_task.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="delete_item.js") }}?{{time}}"></script>
-    <script type="module" defer src="{{ url_for("static", filename="select_list.js") }}?{{time}}"></script>
 </head>
 <body>
     <div class="container">
@@ -20,7 +19,7 @@
             <div class="new_list">
                 <form id="add-list" class="add-item">
                     <input type="text" id="list_name" class="input-field" placeholder="List Name..." required>
-                    <button type="submit" id="submit">Create</button>
+                    <button type="submit" class="submit">Create</button>
                 </form>
             </div>
             <div>
@@ -28,10 +27,11 @@
                     {% for list_item in lists %}
                         <li class="list-item {% if selected_list == list_item %}selected-list{% endif %}"
                             data-id="{{ list_item.id }}">
-                            <div class="list-name">
+                            <a class="list-name {% if selected_list == list_item %}selected-name{% endif %}"
+                               href="{{ url_for("show_list", list_id=list_item.id) }}">
                                 {{ list_item.name }}
-                            </div>
-                            <div class="delete-wrapper">
+                            </a>
+                            <div class="delete-list-wrapper">
                                 <button type="button" class="delete-item delete-list" data-id="{{ list_item.id }}">
                                     <span class="fa  fa-trash"></span>
                                 </button>
@@ -50,7 +50,7 @@
                 <div class="new-todo">
                     <form id="add-task" class="add-item">
                         <input type="text" id="description" class="input-field" placeholder="Enter your task..." required>
-                        <button type="submit" id="submit">Add Task</button>
+                        <button type="submit" class="submit">Add Task</button>
                     </form>
                 </div>
             </div>

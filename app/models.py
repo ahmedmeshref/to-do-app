@@ -10,7 +10,7 @@ class List(db.Model):
     tasks = db.relationship('Todo', backref="list", lazy='select', cascade='save-update, merge, delete-orphan')
 
     def __repr__(self):
-        return f"<List ${self.id} ${self.name}>"
+        return f"<List {self.id} {self.name}>"
 
 
 class Todo(db.Model):
@@ -22,4 +22,4 @@ class Todo(db.Model):
     list_id = db.Column(db.Integer, db.ForeignKey('lists.id'), nullable=False)
 
     def __repr__(self):
-        return f"<Todo ${self.id} ${self.description}>"
+        return f"<Todo {self.id} {self.description}>"

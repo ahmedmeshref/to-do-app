@@ -41,7 +41,9 @@ app.task_form.addEventListener("submit", (e) => {
                 ${response_val.description}
             </div>
             <div class="delete-wrapper">
-                <button type="button" class="delete-task" data-id='${response_val.id}'>&cross;</button>
+                <button type="button" class="delete-task" data-id='${response_val.id}'>
+                    <span class="fa  fa-trash-o"></span>
+                </button>
             </div>
             `;
             app.tasks_wrapper.appendChild(LI);
