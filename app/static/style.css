@@ -61,12 +61,12 @@ a {
 }
 
 .selected-name {
-    color: rgb(19, 59, 0);
+    color: rgb(19, 40, 0);
     font-weight: bolder;
 }
 
 .list-name:hover {
-    color: rgba(0, 128, 0, .7)
+    color: rgba(0, 128, 0, 1)
 }
 
 .delete-list-wrapper {
@@ -136,7 +136,7 @@ a {
     text-align: center;
 }
 
-#submit:hover {
+.submit:hover {
     background-color: rgba(0, 128, 0, 1);
 }
 

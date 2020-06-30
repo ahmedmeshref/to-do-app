@@ -69,10 +69,11 @@ app.list_form.addEventListener("submit", (e) => {
             let LI = document.createElement('li');
             LI.classList.add("list-item");
             LI.innerHTML = `
-            <div class="list-name">
+            <a class="list-name {% if selected_list == list_item %}selected-name{% endif %}"
+             href=${location.origin}/l/${response_val.id}>
                 ${response_val.name}
-            </div>
-            <div class="delete-wrapper">
+            </a>
+            <div class="delete-list-wrapper">
                 <button type="button" class="delete-item delete-list" data-id="${response_val.id}">
                     <span class="fa  fa-trash"></span>
                 </button>
