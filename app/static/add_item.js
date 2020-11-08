@@ -1,5 +1,5 @@
 'use strict';
-import {validInput, invalidInput, isValidateInput, handleErrors, request} from "./utils.js";
+import {validInput, invalidInput, isValidateInput, handleErrors, request, sanitize} from "./utils.js";
 
 let app = {
     task_form: document.getElementById("add-task"),
@@ -29,21 +29,20 @@ app.task_form.addEventListener("submit", (e) => {
         method = "POST",
         list_id = app.description.getAttribute("data-list"),
         msg = {
-            'description': app.description.value,
-            'list_id': list_id
+            'description': sanitize(app.description.value),
+            'list_id': sanitize(list_id)
         },
         logRequestResult = (response_val) => {
-            console.log(response_val);
             // create a new todo list item
             let LI = document.createElement('li');
             LI.classList.add("task-item");
-            LI.setAttribute('data-id' , response_val.id);
+            LI.setAttribute('data-id', response_val.id);
             LI.innerHTML = `
             <div class="check-completed">
                 <input class="checkbox" data-id='${response_val.id}' type="checkbox"/>
             </div>
             <div class="task-description">
-                ${response_val.description}
+                ${sanitize(response_val.description)}
             </div>
             <div class="delete-wrapper">
                 <button type="button" class="delete-item delete-task" data-id='${response_val.id}'>
@@ -58,7 +57,7 @@ app.task_form.addEventListener("submit", (e) => {
             invalidInput(app.description);
             console.log(err.message);
         };
-     request(route, method, msg, handleErrors, logRequestResult, logError);
+    request(route, method, msg, handleErrors, logRequestResult, logError);
 })
 
 
@@ -91,5 +90,5 @@ app.list_form.addEventListener("submit", (e) => {
             invalidInput(app.list_name);
             console.log(err.message);
         };
-     request(route, method, msg, handleErrors, logRequestResult, logError);
+    request(route, method, msg, handleErrors, logRequestResult, logError);
 })
