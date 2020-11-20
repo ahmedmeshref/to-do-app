@@ -6,19 +6,29 @@ import sys
 
 @app.route("/")
 def home():
-    first_list = db.session.query(List).first()
-    return redirect(url_for("show_list", list_id=first_list.id))
+    try:
+        lists = db.session.query(List).order_by(List.id).all()
+        if not lists:
+            print("Running not empty!")
+            return render_template('home.html', tasks=[], lists=[], selected_list=None)
+        else:
+            selected_list = lists[0]
+            tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
+            return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
+    except Exception as E:
+        return abort(500)
 
 
 @app.route('/l/<list_id>/')
 def show_list(list_id):
-    # try:
-    lists = db.session.query(List).order_by(List.id).all()
-    selected_list = db.session.query(List).get(list_id)
-    tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
-    return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
-    # except:
-    #     return abort(500)
+    # verify a list_id exist
+    selected_list = db.session.query(List).get_or_404(list_id)
+    try:
+        lists = db.session.query(List).order_by(List.id).all()
+        tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
+        return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
+    except:
+        return abort(500)
 
 
 @app.route("/todos/create", methods=["POST"])
@@ -96,21 +106,23 @@ def delete_task(task_id):
 @app.route("/todos/create_list", methods=["POST"])
 def create_list():
     error = False
-    body = {}
     try:
-        list_name = request.get_json()['list_name']
-        list_item = List(name=list_name)
-        db.session.add(list_item)
+        l_name = request.get_json()['list_name']
+        new_list = List(name=l_name)
+        db.session.add(new_list)
         db.session.commit()
-        body['id'] = list_item.id
-        body['name'] = list_item.name
-    except:
+        response = {
+            "id": new_list.id,
+            "name": new_list.name
+        }
+    except Exception as E:
         db.session.rollback()
         error = True
     finally:
         db.session.close()
+
     if not error:
-        return jsonify(body)
+        return jsonify(response)
     return abort(500)
 
 

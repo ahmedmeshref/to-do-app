@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +11,7 @@
     <script type="module" defer src="{{ url_for("static", filename="update_task.js") }}?{{time}}"></script>
     <script type="module" defer src="{{ url_for("static", filename="delete_item.js") }}?{{time}}"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="list-section">
@@ -25,58 +27,63 @@
             <div>
                 <ul id="lists-wrapper">
                     {% for list_item in lists %}
-                        <li class="list-item {% if selected_list == list_item %}selected-list{% endif %}"
-                            data-id="{{ list_item.id }}">
-                            <a class="list-name {% if selected_list == list_item %}selected-name{% endif %}"
-                               href="{{ url_for("show_list", list_id=list_item.id) }}">
-                                {{ list_item.name }}
-                            </a>
-                            <div class="delete-list-wrapper">
-                                <button type="button" class="delete-item delete-list" data-id="{{ list_item.id }}">
-                                    <span class="fa  fa-trash"></span>
-                                </button>
-                            </div>
-                        </li>
+                    <li class="list-item {% if selected_list == list_item %}selected-list{% endif %}"
+                        data-id="{{ list_item.id }}">
+                        <a class="list-name {% if selected_list == list_item %}selected-name{% endif %}"
+                            href="{{ url_for("show_list", list_id=list_item.id) }}">
+                            {{ list_item.name }}
+                        </a>
+                        <div class="delete-list-wrapper">
+                            <button type="button" class="delete-item delete-list" data-id="{{ list_item.id }}">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </div>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
 
+        {% if lists %}
         <div class="todo_wrapper">
             <div class="header">
                 <div class="title">
                     <h1>{{ selected_list.name }}</h1>
                 </div>
+
                 <div class="new-todo">
                     <form id="add-task" class="add-item">
                         <input type="text" id="description" class="input-field" placeholder="Enter your task..."
-                              data-list={{ selected_list.id }} required>
+                            data-list={{ selected_list.id }} required>
                         <button type="submit" class="submit">Add Task</button>
                     </form>
                 </div>
+
             </div>
 
             <div class="search"></div>
 
             <ul id="tasks-wrapper">
                 {% for task in tasks %}
-                    <li class="task-item" data-id="{{ task.id }}">
-                        <div class="check-completed">
-                            <input class="checkbox" data-id="{{ task.id }}" type="checkbox"
-                                    {% if task.completed %} checked {% endif %} />
-                        </div>
-                        <div class="task-description">
-                            {{ task.description }}
-                        </div>
-                        <div class="delete-wrapper">
-                            <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
-                                <span class="fa  fa-trash-o"></span>
-                            </button>
-                        </div>
-                    </li>
+                <li class="task-item" data-id="{{ task.id }}">
+                    <div class="check-completed">
+                        <input class="checkbox" data-id="{{ task.id }}" type="checkbox" {% if task.completed %} checked
+                            {% endif %} />
+                    </div>
+                    <div class="task-description">
+                        {{ task.description }}
+                    </div>
+                    <div class="delete-wrapper">
+                        <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
+                            <span class="fa  fa-trash-o"></span>
+                        </button>
+                    </div>
+                </li>
                 {% endfor %}
-             </ul>
+            </ul>
         </div>
+        {% endif %}
     </div>
 </body>
+
 </html>
