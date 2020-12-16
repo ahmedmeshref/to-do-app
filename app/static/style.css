@@ -78,10 +78,10 @@ a {
     color: rgba(209, 26, 42, 1);
 }
 
-.todo_wrapper {
+.todos-section {
     width: 60%;
     height: 750px;
-    background-color: #555;
+    background-color: #fff;
     border-radius: 10px;
     text-align: center;
     padding: 10px;
@@ -114,7 +114,7 @@ a {
 }
 
 .list-title h1 {
-    color: #fff;
+    color: #000000;
     font-size: 34px;
     border-bottom: 1px solid #F1F4F7;
     padding-bottom: 10px;

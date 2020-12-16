@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ url_for(" static ", filename="style.css ") }}?{{time}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}?{{time}}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <title>home</title>
-    <script type="module" defer src="{{ url_for(" static ", filename="add_item.js ") }}?{{time}}"></script>
-    <script type="module" defer src="{{ url_for(" static ", filename="update_task.js ") }}?{{time}}"></script>
-    <script type="module" defer src="{{ url_for(" static ", filename="delete_item.js ") }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for('static', filename='add_item.js' ) }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for('static' , filename='update_task.js' ) }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for('static', filename='delete_item.js' ) }}?{{time}}"></script>
 </head>
 
 <body>
@@ -27,12 +27,12 @@
             <div>
                 <ul id="lists-wrapper">
                     {% for list_item in lists %}
-                    <li class="list-item {% if selected_list == list_item %}selected-list{% endif %}" data-id="{{ list_item.id }}">
-                        <a class="list-name {% if selected_list == list_item %}selected-name{% endif %}" href="{{ url_for(" show_list ", list_id=list_item.id) }}">
+                    <li class="list-item {% if selected_list==list_item %}selected-list{% endif %}" data-id="{{ list_item.id }}">
+                        <a class="list-name {% if selected_list==list_item %}selected-name{% endif %}" href="{{ url_for('show_list', list_id=list_item.id) }}">
                             {{ list_item.name }}
                         </a>
                         <div class="delete-list-wrapper">
-                            <button type="button" class="delete-item delete-list" data-id="{{ list_item.id }}">
+                            <button type='button ' class='delete-item delete-list ' data-id="{{ list_item.id }}">
                                 <span class="fa fa-trash"></span>
                             </button>
                         </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="todo-section">
+        <div class="todos-section">
             <div class="header">
                 <div class="list-title">
                     <h1>{{ selected_list.name }}</h1>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="delete-wrapper">
                         <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
-                            <span class="fa  fa-trash-o"></span>
+                            <span class="fa fa-trash-o"></span>
                         </button>
                     </div>
                 </li>

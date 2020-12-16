@@ -6,17 +6,18 @@ import sys
 
 @app.route("/")
 def home():
-    try:
-        lists = db.session.query(List).order_by(List.id).all()
-        if not lists:
-            print("Running not empty!")
-            return render_template('home.html', tasks=[], lists=[], selected_list=None)
-        else:
-            selected_list = lists[0]
-            tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
-            return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
-    except Exception as E:
-        return abort(500)
+    # try:
+    lists = db.session.query(List).order_by(List.id).all()
+    print(lists)
+    if not lists:
+        print("Running not empty!")
+        return render_template('home.html', tasks=[], lists=[], selected_list=None)
+    else:
+        selected_list = lists[0]
+        tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
+        return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
+    # except Exception as E:
+    #     return abort(500)
 
 
 @app.route('/l/<list_id>/')
