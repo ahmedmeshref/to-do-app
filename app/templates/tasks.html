@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}?{{time}}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>tasks</title>
+    <script type="module" defer src="{{ url_for('static', filename='add_item.js' ) }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for('static' , filename='update_task.js' ) }}?{{time}}"></script>
+    <script type="module" defer src="{{ url_for('static', filename='delete_item.js' ) }}?{{time}}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">Todo<span class="text-light bg-dark">me</span></h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    <a class="nav-link active" href="{{ url_for('show_lists') }}">Tasks</a>
+                    <a class="nav-link" href="{{ url_for('signup') }}">Logout</a>
+                </nav>
+            </div>
+        </header>
+        <div class="lists-section" style="display: block;">
+            <div class="header">
+                <h3>Lists</h3>
+            </div>
+            <div class="new_list">
+                <form id="add-list" class="add-item">
+                    <input type="text" id="list_name" class="input-field" placeholder="List Name..." required>
+                    <button type="submit" class="submit">Create</button>
+                </form>
+            </div>
+            <div>
+                <ul id="lists-wrapper">
+                    {% for list_item in lists %}
+                    <li class="list-item {% if selected_list==list_item %}selected-list{% endif %}"
+                        data-id="{{ list_item.id }}">
+                        <a class="list-name {% if selected_list==list_item %}selected-name{% endif %}"
+                            href="{{ url_for('show_list', list_id=list_item.id) }}">
+                            {{ list_item.name }}
+                        </a>
+                        <div class="delete-list-wrapper">
+                            <button type='button ' class='delete-item delete-list ' data-id="{{ list_item.id }}">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="todos-section">
+            <div class="header">
+                <div class="list-title">
+                    <h1>{{ selected_list.name }}</h1>
+                </div>
+
+                <div class="new-todo">
+                    <form id="add-task" class="add-item">
+                        <input type="text" id="description" class="input-field" placeholder="Enter your task..."
+                            data-list={{ selected_list.id }} required>
+                        <button type="submit" class="submit">Add Task</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="search"></div>
+
+            <ul id="tasks-wrapper">
+                {% for task in tasks %}
+                <li class="task-item" data-id="{{ task.id }}">
+                    <div class="check-completed">
+                        <input class="checkbox" data-id="{{ task.id }}" type="checkbox" {% if task.completed %} checked
+                            {% endif %} />
+                    </div>
+                    <div class="task-description">
+                        {{ task.description }}
+                    </div>
+                    <div class="delete-wrapper">
+                        <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
+                            <span class="fa fa-trash-o"></span>
+                        </button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

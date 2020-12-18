@@ -6,28 +6,40 @@ import sys
 
 @app.route("/")
 def home():
+    return render_template('home.html')
+
+@app.route("/signup")
+def signup():
+    return render_template('signup.html')
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+@app.route("/todos")
+def show_lists():
     # try:
     lists = db.session.query(List).order_by(List.id).all()
     print(lists)
     if not lists:
         print("Running not empty!")
-        return render_template('home.html', tasks=[], lists=[], selected_list=None)
+        return render_template('tasks.html', tasks=[], lists=[], selected_list=None)
     else:
         selected_list = lists[0]
         tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
-        return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
+        return render_template('tasks.html', tasks=tasks, lists=lists, selected_list=selected_list)
     # except Exception as E:
     #     return abort(500)
 
 
-@app.route('/l/<list_id>/')
+@app.route('/todos/l/<list_id>/')
 def show_list(list_id):
     # verify a list_id exist
     selected_list = db.session.query(List).get_or_404(list_id)
     try:
         lists = db.session.query(List).order_by(List.id).all()
         tasks = db.session.query(Todo).filter(Todo.list_id == selected_list.id).order_by(Todo.id).all()
-        return render_template('home.html', tasks=tasks, lists=lists, selected_list=selected_list)
+        return render_template('tasks.html', tasks=tasks, lists=lists, selected_list=selected_list)
     except:
         return abort(500)
 
