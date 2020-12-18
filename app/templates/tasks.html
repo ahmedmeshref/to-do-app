@@ -16,10 +16,10 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
-                <h3 class="masthead-brand">Todo<span class="text-light bg-dark">me</span></h3>
+                <h3 class="masthead-brand text-center">Todo<span class="text-light bg-dark">me</span></h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                     <a class="nav-link active" href="{{ url_for('show_lists') }}">Tasks</a>
@@ -27,72 +27,77 @@
                 </nav>
             </div>
         </header>
-        <div class="lists-section" style="display: block;">
-            <div class="header">
-                <h3>Lists</h3>
+        <div class="container">
+            <div class="lists-section">
+                <div class="header">
+                    <h3>Lists</h3>
+                </div>
+                <div class="new_list">
+                    <form id="add-list" class="add-item">
+                        <input type="text" name="list-name" class="form-control input-field" id="list_name"
+                            placeholder="List Name..." required>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </form>
+                </div>
+                <div>
+                    <ul id="lists-wrapper">
+                        {% for list_item in lists %}
+                        <li class="list-item {% if selected_list==list_item %}selected-list{% endif %}"
+                            data-id="{{ list_item.id }}">
+                            <a class="list-name {% if selected_list==list_item %}selected-name{% endif %}"
+                                href="{{ url_for('show_list', list_id=list_item.id) }}">
+                                {{ list_item.name }}
+                            </a>
+                            <div class="delete-list-wrapper">
+                                <button type='button ' class='delete-item delete-list' data-id="{{ list_item.id }}">
+                                    <span class="fa fa-trash"></span>
+                                </button>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="new_list">
-                <form id="add-list" class="add-item">
-                    <input type="text" id="list_name" class="input-field" placeholder="List Name..." required>
-                    <button type="submit" class="submit">Create</button>
-                </form>
-            </div>
-            <div>
-                <ul id="lists-wrapper">
-                    {% for list_item in lists %}
-                    <li class="list-item {% if selected_list==list_item %}selected-list{% endif %}"
-                        data-id="{{ list_item.id }}">
-                        <a class="list-name {% if selected_list==list_item %}selected-name{% endif %}"
-                            href="{{ url_for('show_list', list_id=list_item.id) }}">
-                            {{ list_item.name }}
-                        </a>
-                        <div class="delete-list-wrapper">
-                            <button type='button ' class='delete-item delete-list ' data-id="{{ list_item.id }}">
-                                <span class="fa fa-trash"></span>
+
+            <div class="todos-section">
+                <div class="header">
+                    <div class="list-title">
+                        <h1>{{ selected_list.name }}</h1>
+                    </div>
+
+                    <div class="new-todo">
+                        <form id="add-task" class="add-item">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control input-field" id="description"
+                                    placeholder="Enter your task..." data-list={{ selected_list.id }} required>
+                            </div>
+                            <button type="submit" class="btn btn-success">Add Task</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="search"></div>
+
+                <ul id="tasks-wrapper">
+                    {% for task in tasks %}
+                    <li class="task-item" data-id="{{ task.id }}">
+                        <div class="check-completed">
+                            <input class="checkbox" data-id="{{ task.id }}" type="checkbox" {% if task.completed %}
+                                checked {% endif %} />
+                        </div>
+                        <div class="task-description">
+                            {{ task.description }}
+                        </div>
+                        <div class="delete-wrapper">
+                            <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
+                                <span class="fa fa-trash-o"></span>
                             </button>
                         </div>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
-        </div>
-
-        <div class="todos-section">
-            <div class="header">
-                <div class="list-title">
-                    <h1>{{ selected_list.name }}</h1>
-                </div>
-
-                <div class="new-todo">
-                    <form id="add-task" class="add-item">
-                        <input type="text" id="description" class="input-field" placeholder="Enter your task..."
-                            data-list={{ selected_list.id }} required>
-                        <button type="submit" class="submit">Add Task</button>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class="search"></div>
-
-            <ul id="tasks-wrapper">
-                {% for task in tasks %}
-                <li class="task-item" data-id="{{ task.id }}">
-                    <div class="check-completed">
-                        <input class="checkbox" data-id="{{ task.id }}" type="checkbox" {% if task.completed %} checked
-                            {% endif %} />
-                    </div>
-                    <div class="task-description">
-                        {{ task.description }}
-                    </div>
-                    <div class="delete-wrapper">
-                        <button type="button" class="delete-item delete-task" data-id="{{ task.id }}">
-                            <span class="fa fa-trash-o"></span>
-                        </button>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 
