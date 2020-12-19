@@ -74,7 +74,7 @@ app.list_form.addEventListener("submit", (e) => {
             LI.classList.add("list-item");
             LI.innerHTML = `
             <a class="list-name {% if selected_list == list_item %}selected-name{% endif %}"
-             href=${location.origin}/l/${response_val.id}>
+             href=${location.origin}/todos/l/${response_val.id}>
                 ${response_val.name}
             </a>
             <div class="delete-list-wrapper">

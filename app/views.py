@@ -181,7 +181,7 @@ def create_list():
     error = False
     try:
         l_name = request.get_json()['list_name']
-        new_list = List(name=l_name)
+        new_list = List(name=l_name, user_id=current_user.id)
         db.session.add(new_list)
         db.session.commit()
         response = {
