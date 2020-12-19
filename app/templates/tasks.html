@@ -23,10 +23,26 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                     <a class="nav-link active" href="{{ url_for('show_lists') }}">Tasks</a>
-                    <a class="nav-link" href="{{ url_for('signup') }}">Logout</a>
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                 </nav>
             </div>
         </header>
+        <div class="row">
+            <div class="col-md-12 mx-auto text-center">
+                {# flask messages#}
+                {% with messages = get_flashed_messages(with_categories = true) %}
+                {% if messages %}
+                {% for cate, msg in messages %}
+                <div class="alert alert-{{cate}} ">
+                    {{ msg }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {# content#}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
         <div class="container">
             <div class="lists-section">
                 <div class="header">
