@@ -7,7 +7,12 @@ WORKDIR /app
 ADD . /app
 
 # install all requirements 
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# launch the application using uwsgi
-CMD ["uwsgi", "uwsgi.ini"]
+# VOLUME [ "/data" ]
+
+EXPOSE 80
+
+# Do I have to include CMD command?
+CMD ["make", "local_run"]
