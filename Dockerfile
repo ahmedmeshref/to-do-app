@@ -10,9 +10,7 @@ ADD . /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# VOLUME [ "/data" ]
-
-EXPOSE 80
+EXPOSE 5000
 
 # Do I have to include CMD command?
-CMD ["make", "local_run"]
+CMD ["flask", "local_run"]
